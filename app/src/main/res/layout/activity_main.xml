@@ -10,7 +10,7 @@
     tools:context="com.example.android.quizapp.MainActivity">
 
     <LinearLayout
-        android:id="@+id/linear_layout"
+        android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_margin"
@@ -19,6 +19,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -34,7 +35,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/activity_margin"
             android:hint="@string/write_your_name_here"
-            android:maxLines="1"
+            android:singleLine="true"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textSize="@dimen/question_text_size" />
@@ -46,58 +47,45 @@
             card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
-            <TableLayout
-                android:id="@+id/tableLayout1"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
-                android:stretchColumns="0,1">
+                android:orientation="vertical">
 
-                <TableRow>
+                <TextView
+                    android:id="@+id/question1"
+                    style="@style/QuestionTheme"
+                    android:text="1. Which town was Mozart born?" />
 
-                    <TextView
-                        android:id="@+id/question1"
-                        style="@style/QuestionTheme"
-                        android:text="1. Which town was Mozart born?" />
-                </TableRow>
-
-                <TableRow>
-
-                    <View style="@style/GreyLine" />
-                </TableRow>
+                <View style="@style/GreyLine" />
 
                 <RadioGroup
                     android:id="@+id/q1_radiogroup"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
-                    <TableRow>
+                    <RadioButton
+                        android:id="@+id/q1_a1_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Vienna" />
 
-                        <RadioButton
-                            android:id="@+id/q1_a1_radiobutton"
-                            style="@style/AnswerTheme"
-                            android:text="Vienna" />
+                    <RadioButton
+                        android:id="@+id/q1_a2_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Salzburg" />
 
-                        <RadioButton
-                            android:id="@+id/q1_a2_radiobutton"
-                            style="@style/AnswerTheme"
-                            android:text="Salzburg" />
-                    </TableRow>
+                    <RadioButton
+                        android:id="@+id/q1_a3_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Graz" />
 
-                    <TableRow>
-
-                        <RadioButton
-                            android:id="@+id/q1_a3_radiobutton"
-                            style="@style/AnswerTheme"
-                            android:text="Graz" />
-
-                        <RadioButton
-                            android:id="@+id/q1_a4_radiobutton"
-                            style="@style/AnswerTheme"
-                            android:text="Berlin" />
-                    </TableRow>
+                    <RadioButton
+                        android:id="@+id/q1_a4_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Berlin" />
                 </RadioGroup>
-            </TableLayout>
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -107,27 +95,25 @@
             card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
-            <TableLayout
-                android:id="@+id/tableLayout2"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
-                android:stretchColumns="0,1">
+                android:orientation="vertical">
 
-                <TableRow>
 
-                    <TextView
-                        android:id="@+id/question2"
-                        style="@style/QuestionTheme"
-                        android:text="2. Do you recognize this opera? Hit play and guess which one is it." />
-                </TableRow>
+                <TextView
+                    android:id="@+id/question2"
+                    style="@style/QuestionTheme"
+                    android:text="2. Do you recognize this opera? Hit play and guess which one is it." />
 
-                <TableRow>
 
-                    <View style="@style/GreyLine" />
-                </TableRow>
+                <View style="@style/GreyLine" />
 
-                <TableRow>
+                <RadioGroup
+                    android:id="@+id/q2_radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <RadioButton
                         android:id="@+id/q2_a1_radiobutton"
@@ -138,9 +124,7 @@
                         android:id="@+id/q2_a2_radiobutton"
                         style="@style/AnswerTheme"
                         android:text="Rigoletto" />
-                </TableRow>
 
-                <TableRow>
 
                     <RadioButton
                         android:id="@+id/q2_a3_radiobutton"
@@ -151,8 +135,8 @@
                         android:id="@+id/q2_a4_radiobutton"
                         style="@style/AnswerTheme"
                         android:text="The Magic Flute" />
-                </TableRow>
-            </TableLayout>
+                </RadioGroup>
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -162,52 +146,44 @@
             card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
-            <TableLayout
-                android:id="@+id/tableLayout3"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
-                android:stretchColumns="0,1">
+                android:orientation="vertical">
 
-                <TableRow>
 
-                    <TextView
-                        android:id="@+id/question3"
-                        style="@style/QuestionTheme"
-                        android:text="3. Which piece of music(s) has Beethoven composed?" />
-                </TableRow>
+                <TextView
+                    android:id="@+id/question3"
+                    style="@style/QuestionTheme"
+                    android:text="3. Which piece of music(s) has Beethoven composed?" />
 
-                <TableRow>
 
-                    <View style="@style/GreyLine" />
-                </TableRow>
+                <View style="@style/GreyLine" />
 
-                <TableRow>
 
-                    <CheckBox
-                        android:id="@+id/q3_a1_checkbox"
-                        style="@style/AnswerTheme"
-                        android:text="Moonlight Sonata" />
+                <CheckBox
+                    android:id="@+id/q3_a1_checkbox"
+                    style="@style/AnswerTheme"
+                    android:text="Moonlight Sonata" />
 
-                    <CheckBox
-                        android:id="@+id/q3_a2_checkbox"
-                        style="@style/AnswerTheme"
-                        android:text="Ode to Joy" />
-                </TableRow>
+                <CheckBox
+                    android:id="@+id/q3_a2_checkbox"
+                    style="@style/AnswerTheme"
+                    android:text="Ode to Joy" />
 
-                <TableRow>
 
-                    <CheckBox
-                        android:id="@+id/q3_a3_checkbox"
-                        style="@style/AnswerTheme"
-                        android:text="The Trout" />
+                <CheckBox
+                    android:id="@+id/q3_a3_checkbox"
+                    style="@style/AnswerTheme"
+                    android:text="The Trout" />
 
-                    <CheckBox
-                        android:id="@+id/q3_a4_checkbox"
-                        style="@style/AnswerTheme"
-                        android:text="Fidelio" />
-                </TableRow>
-            </TableLayout>
+                <CheckBox
+                    android:id="@+id/q3_a4_checkbox"
+                    style="@style/AnswerTheme"
+                    android:text="Fidelio" />
+
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -217,27 +193,23 @@
             card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
-            <TableLayout
-                android:id="@+id/tableLayout4"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
-                android:stretchColumns="0,1">
+                android:orientation="vertical">
 
-                <TableRow>
+                <TextView
+                    android:id="@+id/question4"
+                    style="@style/QuestionTheme"
+                    android:text="@string/question_4" />
 
-                    <TextView
-                        android:id="@+id/question4"
-                        style="@style/QuestionTheme"
-                        android:text="@string/question_4" />
-                </TableRow>
+                <View style="@style/GreyLine" />
 
-                <TableRow>
-
-                    <View style="@style/GreyLine" />
-                </TableRow>
-
-                <TableRow>
+                <RadioGroup
+                    android:id="@+id/q4_radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <RadioButton
                         android:id="@+id/q4_a1_radiobutton"
@@ -248,9 +220,6 @@
                         android:id="@+id/q4_a2_radiobutton"
                         style="@style/AnswerTheme"
                         android:text="Schubert" />
-                </TableRow>
-
-                <TableRow>
 
                     <RadioButton
                         android:id="@+id/q4_a3_radiobutton"
@@ -261,8 +230,8 @@
                         android:id="@+id/q4_a4_radiobutton"
                         style="@style/AnswerTheme"
                         android:text="Johann Strauss II" />
-                </TableRow>
-            </TableLayout>
+                </RadioGroup>
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -272,42 +241,35 @@
             card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
-            <TableLayout
-                android:id="@+id/tableLayout5"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
-                android:stretchColumns="0,1">
+                android:orientation="vertical">
 
-                <TableRow>
 
-                    <TextView
-                        android:id="@+id/question5"
-                        style="@style/QuestionTheme"
-                        android:text="5. How many Chopin nocturnes has been made?" />
-                </TableRow>
+                <TextView
+                    android:id="@+id/question5"
+                    style="@style/QuestionTheme"
+                    android:text="5. How many Chopin nocturnes has been made?" />
 
-                <TableRow>
 
-                    <View style="@style/GreyLine" />
-                </TableRow>
+                <View style="@style/GreyLine" />
 
-                <TableRow>
 
-                    <EditText
-                        android:id="@+id/q5_a1_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/activity_margin"
-                        android:hint="Write your answer here"
-                        android:maxLines="1"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="@android:color/darker_gray"
-                        android:textSize="@dimen/question_text_size" />
+                <EditText
+                    android:id="@+id/q5_a1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/activity_margin"
+                    android:hint="Write your answer here"
+                    android:maxLines="1"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="@dimen/question_text_size" />
 
-                </TableRow>
-            </TableLayout>
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -317,23 +279,22 @@
             card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
-            <TableLayout
-                android:id="@+id/tableLayout6"
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/margin_default"
-                android:stretchColumns="0,1">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-                <TableRow>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="submitAnswer"
-                        android:text="Submit" />
-                </TableRow>
-            </TableLayout>
+                <Button
+                    android:id="@+id/submit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="submitAnswer"
+                    android:text="Submit" />
+
+            </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
 </ScrollView>
