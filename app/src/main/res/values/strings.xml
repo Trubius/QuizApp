@@ -7,9 +7,9 @@
     <string name="q1_answer2">Salzburg</string>
     <string name="q1_answer3">Graz</string>
     <string name="q1_answer4">Berlin</string>
-    <string name="question2">2. Do you recognize this opera? Hit play and guess which one is it.</string>
-    <string name="q2_answer1">The Marrige of Figaro</string>
-    <string name="q2_answer2">Rigoletto</string>
+    <string name="question2">2. Which opera has been composed by Giuseppe Verdi?</string>
+    <string name="q2_answer1">Rigoletto</string>
+    <string name="q2_answer2">The Marriage of Figaro</string>
     <string name="q2_answer3">Carmen</string>
     <string name="q2_answer4">The Magic Flute</string>
     <string name="question3">3. Which piece of music(s) has Beethoven composed?</string>
