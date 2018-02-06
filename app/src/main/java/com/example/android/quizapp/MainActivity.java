@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         q4_a3 = (RadioButton) findViewById(R.id.q4_a3_radiobutton);
         q4_a4 = (RadioButton) findViewById(R.id.q4_a4_radiobutton); //correct answer
         q5_a1 = (EditText) findViewById(R.id.q5_a1_text); //correct answer is 21
-
     }
 
     private int getScore() {
@@ -74,8 +73,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitAnswer(View view) {
         String name = nameField.getText().toString();
+
         if (name.equalsIgnoreCase("")) {
             Toast.makeText(this, "Don't forget to write down your name", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (q1.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Please answer the 1st question!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (q2.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Please answer the 2nd question!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (!q3_a1.isChecked() && !q3_a2.isChecked() && !q3_a4.isChecked() && !q3_a3.isChecked()) {
+            Toast.makeText(this, "Please answer the 3rd question!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (q4.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Please answer the 4th question!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (q5_a1.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(this, "Please answer the 5th question!", Toast.LENGTH_LONG).show();
             return;
         }
         getScore();
