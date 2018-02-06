@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+
     int score = 0;
     EditText nameField;
     RadioGroup q1, q2, q4;
@@ -71,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
         return score;
     }
 
+    /**
+     * @param view
+     */
     public void submitAnswer(View view) {
         String name = nameField.getText().toString();
 

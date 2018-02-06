@@ -25,7 +25,9 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/activity_margin"
             android:text="@string/music_quiz"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
             android:textSize="@dimen/title_text_size" />
 
         <EditText
@@ -36,8 +38,8 @@
             android:layout_marginBottom="@dimen/activity_margin"
             android:hint="@string/write_your_name_here"
             android:singleLine="true"
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/black"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:textSize="@dimen/question_text_size" />
 
         <android.support.v7.widget.CardView
@@ -56,7 +58,7 @@
                 <TextView
                     android:id="@+id/question1"
                     style="@style/QuestionTheme"
-                    android:text="1. Which town was Mozart born?" />
+                    android:text="@string/question1" />
 
                 <View style="@style/GreyLine" />
 
@@ -68,22 +70,22 @@
                     <RadioButton
                         android:id="@+id/q1_a1_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Vienna" />
+                        android:text="@string/q1_answer1" />
 
                     <RadioButton
                         android:id="@+id/q1_a2_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Salzburg" />
+                        android:text="@string/q1_answer2" />
 
                     <RadioButton
                         android:id="@+id/q1_a3_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Graz" />
+                        android:text="@string/q1_answer3" />
 
                     <RadioButton
                         android:id="@+id/q1_a4_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Berlin" />
+                        android:text="@string/q1_answer4" />
                 </RadioGroup>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -105,7 +107,7 @@
                 <TextView
                     android:id="@+id/question2"
                     style="@style/QuestionTheme"
-                    android:text="2. Do you recognize this opera? Hit play and guess which one is it." />
+                    android:text="@string/question2" />
 
 
                 <View style="@style/GreyLine" />
@@ -118,23 +120,23 @@
                     <RadioButton
                         android:id="@+id/q2_a1_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="The Marrige of Figaro" />
+                        android:text="@string/q2_answer1" />
 
                     <RadioButton
                         android:id="@+id/q2_a2_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Rigoletto" />
+                        android:text="@string/q2_answer2" />
 
 
                     <RadioButton
                         android:id="@+id/q2_a3_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Carmen" />
+                        android:text="@string/q2_answer3" />
 
                     <RadioButton
                         android:id="@+id/q2_a4_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="The Magic Flute" />
+                        android:text="@string/q2_answer4" />
                 </RadioGroup>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -156,7 +158,7 @@
                 <TextView
                     android:id="@+id/question3"
                     style="@style/QuestionTheme"
-                    android:text="3. Which piece of music(s) has Beethoven composed?" />
+                    android:text="@string/question3" />
 
 
                 <View style="@style/GreyLine" />
@@ -165,23 +167,23 @@
                 <CheckBox
                     android:id="@+id/q3_a1_checkbox"
                     style="@style/AnswerTheme"
-                    android:text="Moonlight Sonata" />
+                    android:text="@string/q3_answer1" />
 
                 <CheckBox
                     android:id="@+id/q3_a2_checkbox"
                     style="@style/AnswerTheme"
-                    android:text="Ode to Joy" />
+                    android:text="@string/q3_answer2" />
 
 
                 <CheckBox
                     android:id="@+id/q3_a3_checkbox"
                     style="@style/AnswerTheme"
-                    android:text="The Trout" />
+                    android:text="@string/q3_answer3" />
 
                 <CheckBox
                     android:id="@+id/q3_a4_checkbox"
                     style="@style/AnswerTheme"
-                    android:text="Fidelio" />
+                    android:text="@string/q3_answer4" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -214,22 +216,22 @@
                     <RadioButton
                         android:id="@+id/q4_a1_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Chopin" />
+                        android:text="@string/q4_answer1" />
 
                     <RadioButton
                         android:id="@+id/q4_a2_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Schubert" />
+                        android:text="@string/q4_answer2" />
 
                     <RadioButton
                         android:id="@+id/q4_a3_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Johann Strauss I" />
+                        android:text="@string/q4_answer3" />
 
                     <RadioButton
                         android:id="@+id/q4_a4_radiobutton"
                         style="@style/AnswerTheme"
-                        android:text="Johann Strauss II" />
+                        android:text="@string/q4_answer4" />
                 </RadioGroup>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -251,7 +253,7 @@
                 <TextView
                     android:id="@+id/question5"
                     style="@style/QuestionTheme"
-                    android:text="5. How many Chopin nocturnes has been made?" />
+                    android:text="@string/question5" />
 
 
                 <View style="@style/GreyLine" />
@@ -263,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/activity_margin"
-                    android:hint="Write your answer here"
+                    android:hint="@string/write_your_answer"
                     android:singleLine="true"
                     android:inputType="number"
                     android:textColor="@android:color/black"
@@ -293,7 +295,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="submitAnswer"
-                    android:text="Submit" />
+                    android:text="@string/submit" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

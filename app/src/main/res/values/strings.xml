@@ -1,6 +1,28 @@
 <resources>
     <string name="app_name">Quiz App</string>
     <string name="music_quiz">Music quiz</string>
-    <string name="write_your_name_here">Write your name here</string>
+    <string name="write_your_name_here">Type your name here</string>
+    <string name="question1">1. Which town was Mozart born?</string>
+    <string name="q1_answer1">Vienna</string>
+    <string name="q1_answer2">Salzburg</string>
+    <string name="q1_answer3">Graz</string>
+    <string name="q1_answer4">Berlin</string>
+    <string name="question2">2. Do you recognize this opera? Hit play and guess which one is it.</string>
+    <string name="q2_answer1">The Marrige of Figaro</string>
+    <string name="q2_answer2">Rigoletto</string>
+    <string name="q2_answer3">Carmen</string>
+    <string name="q2_answer4">The Magic Flute</string>
+    <string name="question3">3. Which piece of music(s) has Beethoven composed?</string>
+    <string name="q3_answer1">Moonlight Sonata</string>
+    <string name="q3_answer2">Ode to Joy</string>
+    <string name="q3_answer3">The Trout</string>
+    <string name="q3_answer4">Fidelio</string>
     <string name="question_4">4. Who composed the \"The Blue Danube\" waltz?</string>
+    <string name="q4_answer1">Chopin</string>
+    <string name="q4_answer2">Schubert</string>
+    <string name="q4_answer3">Johann Strauss I</string>
+    <string name="q4_answer4">Johann Strauss II</string>
+    <string name="question5">5. How many Chopin nocturnes has been made?</string>
+    <string name="write_your_answer">Write your answer here</string>
+    <string name="submit">Submit</string>
 </resources>
