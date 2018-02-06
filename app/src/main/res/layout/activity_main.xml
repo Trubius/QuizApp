@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:fillViewport="true"
+    tools:context="com.example.android.quizapp.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_margin"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_margin"
+            android:text="@string/music_quiz"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/title_text_size" />
+
+        <EditText
+            android:id="@+id/name_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_margin"
+            android:hint="@string/write_your_name_here"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:textSize="@dimen/question_text_size" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_question1"
+            style="@style/CardTheme"
+            card_view:cardCornerRadius="@dimen/card_corner_radius"
+            card_view:cardElevation="@dimen/card_padding"
+            card_view:contentPadding="@dimen/card_padding">
+
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:stretchColumns="0,1">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/question1"
+                        style="@style/QuestionTheme"
+                        android:text="1. Which town was Mozart born?" />
+                </TableRow>
+
+                <TableRow>
+
+                    <View style="@style/GreyLine" />
+                </TableRow>
+
+                <RadioGroup
+                    android:id="@+id/q1_radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow>
+
+                        <RadioButton
+                            android:id="@+id/q1_a1_radiobutton"
+                            style="@style/AnswerTheme"
+                            android:text="Vienna" />
+
+                        <RadioButton
+                            android:id="@+id/q1_a2_radiobutton"
+                            style="@style/AnswerTheme"
+                            android:text="Salzburg" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <RadioButton
+                            android:id="@+id/q1_a3_radiobutton"
+                            style="@style/AnswerTheme"
+                            android:text="Graz" />
+
+                        <RadioButton
+                            android:id="@+id/q1_a4_radiobutton"
+                            style="@style/AnswerTheme"
+                            android:text="Berlin" />
+                    </TableRow>
+                </RadioGroup>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_question2"
+            style="@style/CardTheme"
+            card_view:cardCornerRadius="@dimen/card_corner_radius"
+            card_view:cardElevation="@dimen/card_padding"
+            card_view:contentPadding="@dimen/card_padding">
+
+            <TableLayout
+                android:id="@+id/tableLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:stretchColumns="0,1">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/question2"
+                        style="@style/QuestionTheme"
+                        android:text="2. Do you recognize this opera? Hit play and guess which one is it." />
+                </TableRow>
+
+                <TableRow>
+
+                    <View style="@style/GreyLine" />
+                </TableRow>
+
+                <TableRow>
+
+                    <RadioButton
+                        android:id="@+id/q2_a1_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="The Marrige of Figaro" />
+
+                    <RadioButton
+                        android:id="@+id/q2_a2_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Rigoletto" />
+                </TableRow>
+
+                <TableRow>
+
+                    <RadioButton
+                        android:id="@+id/q2_a3_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Carmen" />
+
+                    <RadioButton
+                        android:id="@+id/q2_a4_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="The Magic Flute" />
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_question3"
+            style="@style/CardTheme"
+            card_view:cardCornerRadius="@dimen/card_corner_radius"
+            card_view:cardElevation="@dimen/card_padding"
+            card_view:contentPadding="@dimen/card_padding">
+
+            <TableLayout
+                android:id="@+id/tableLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:stretchColumns="0,1">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/question3"
+                        style="@style/QuestionTheme"
+                        android:text="3. Which piece of music(s) has Beethoven composed?" />
+                </TableRow>
+
+                <TableRow>
+
+                    <View style="@style/GreyLine" />
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/q3_a1_checkbox"
+                        style="@style/AnswerTheme"
+                        android:text="Moonlight Sonata" />
+
+                    <CheckBox
+                        android:id="@+id/q3_a2_checkbox"
+                        style="@style/AnswerTheme"
+                        android:text="Ode to Joy" />
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/q3_a3_checkbox"
+                        style="@style/AnswerTheme"
+                        android:text="The Trout" />
+
+                    <CheckBox
+                        android:id="@+id/q3_a4_checkbox"
+                        style="@style/AnswerTheme"
+                        android:text="Fidelio" />
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_question4"
+            style="@style/CardTheme"
+            card_view:cardCornerRadius="@dimen/card_corner_radius"
+            card_view:cardElevation="@dimen/card_padding"
+            card_view:contentPadding="@dimen/card_padding">
+
+            <TableLayout
+                android:id="@+id/tableLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:stretchColumns="0,1">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/question4"
+                        style="@style/QuestionTheme"
+                        android:text="@string/question_4" />
+                </TableRow>
+
+                <TableRow>
+
+                    <View style="@style/GreyLine" />
+                </TableRow>
+
+                <TableRow>
+
+                    <RadioButton
+                        android:id="@+id/q4_a1_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Chopin" />
+
+                    <RadioButton
+                        android:id="@+id/q4_a2_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Schubert" />
+                </TableRow>
+
+                <TableRow>
+
+                    <RadioButton
+                        android:id="@+id/q4_a3_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Johann Strauss I" />
+
+                    <RadioButton
+                        android:id="@+id/q4_a4_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="Johann Strauss II" />
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_question5"
+            style="@style/CardTheme"
+            card_view:cardCornerRadius="@dimen/card_corner_radius"
+            card_view:cardElevation="@dimen/card_padding"
+            card_view:contentPadding="@dimen/card_padding">
+
+            <TableLayout
+                android:id="@+id/tableLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:stretchColumns="0,1">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/question5"
+                        style="@style/QuestionTheme"
+                        android:text="5. How many Chopin nocturnes has been made?" />
+                </TableRow>
+
+                <TableRow>
+
+                    <View style="@style/GreyLine" />
+                </TableRow>
+
+                <TableRow>
+
+                    <EditText
+                        android:id="@+id/q5_a1_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/activity_margin"
+                        android:hint="Write your answer here"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="@dimen/question_text_size" />
+
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_question6"
+            style="@style/CardTheme"
+            card_view:cardCornerRadius="@dimen/card_corner_radius"
+            card_view:cardElevation="@dimen/card_padding"
+            card_view:contentPadding="@dimen/card_padding">
+
+            <TableLayout
+                android:id="@+id/tableLayout6"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/margin_default"
+                android:stretchColumns="0,1">
+
+                <TableRow>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="submitAnswer"
+                        android:text="Submit" />
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>
