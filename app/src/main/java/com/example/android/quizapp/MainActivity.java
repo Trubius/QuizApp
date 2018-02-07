@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         }
         getScore();
         if (score == 5) {
-            Toast.makeText(this, "You did it, " + name + "! You are awesome!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You did it, " + name + "! You have " + score + " points out of 5.", Toast.LENGTH_LONG).show();
         } else if (score >= 3) {
             Toast.makeText(this, "Not bad " + name + ", you have " + score + " points out of 5.", Toast.LENGTH_LONG).show();
         } else {
