@@ -1,13 +1,16 @@
 package com.example.android.quizapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox q3_a1, q3_a2, q3_a3, q3_a4;
     RadioButton q4_a1, q4_a2, q4_a3, q4_a4;
     EditText q5_a1;
-    Button submitButton;
+    Button submitButton, resetButton;
 
 
     @Override
@@ -29,28 +32,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nameField = (EditText) findViewById(R.id.name_field);
-        submitButton = (Button) findViewById(R.id.submit_button);
-        q1 = (RadioGroup) findViewById(R.id.q1_radiogroup);
-        q2 = (RadioGroup) findViewById(R.id.q2_radiogroup);
-        q4 = (RadioGroup) findViewById(R.id.q4_radiogroup);
-        q1_a1 = (RadioButton) findViewById(R.id.q1_a1_radiobutton);
-        q1_a2 = (RadioButton) findViewById(R.id.q1_a2_radiobutton); //correct answer
-        q1_a3 = (RadioButton) findViewById(R.id.q1_a3_radiobutton);
-        q1_a4 = (RadioButton) findViewById(R.id.q1_a4_radiobutton);
-        q2_a1 = (RadioButton) findViewById(R.id.q2_a1_radiobutton); //correct answer
-        q2_a2 = (RadioButton) findViewById(R.id.q2_a2_radiobutton);
-        q2_a3 = (RadioButton) findViewById(R.id.q2_a3_radiobutton);
-        q2_a4 = (RadioButton) findViewById(R.id.q2_a4_radiobutton);
-        q3_a1 = (CheckBox) findViewById(R.id.q3_a1_checkbox); //correct answer
-        q3_a2 = (CheckBox) findViewById(R.id.q3_a2_checkbox); //correct answer
-        q3_a3 = (CheckBox) findViewById(R.id.q3_a3_checkbox);
-        q3_a4 = (CheckBox) findViewById(R.id.q3_a4_checkbox); //correct answer
-        q4_a1 = (RadioButton) findViewById(R.id.q4_a1_radiobutton);
-        q4_a2 = (RadioButton) findViewById(R.id.q4_a2_radiobutton);
-        q4_a3 = (RadioButton) findViewById(R.id.q4_a3_radiobutton);
-        q4_a4 = (RadioButton) findViewById(R.id.q4_a4_radiobutton); //correct answer
-        q5_a1 = (EditText) findViewById(R.id.q5_a1_text); //correct answer is 21
+        nameField = findViewById(R.id.name_field);
+        submitButton = findViewById(R.id.submit_button);
+        resetButton = findViewById(R.id.reset_button);
+        q1 = findViewById(R.id.q1_radiogroup);
+        q2 = findViewById(R.id.q2_radiogroup);
+        q4 = findViewById(R.id.q4_radiogroup);
+        q1_a1 = findViewById(R.id.q1_a1_radiobutton);
+        q1_a2 = findViewById(R.id.q1_a2_radiobutton); //correct answer
+        q1_a3 = findViewById(R.id.q1_a3_radiobutton);
+        q1_a4 = findViewById(R.id.q1_a4_radiobutton);
+        q2_a1 = findViewById(R.id.q2_a1_radiobutton); //correct answer
+        q2_a2 = findViewById(R.id.q2_a2_radiobutton);
+        q2_a3 = findViewById(R.id.q2_a3_radiobutton);
+        q2_a4 = findViewById(R.id.q2_a4_radiobutton);
+        q3_a1 = findViewById(R.id.q3_a1_checkbox); //correct answer
+        q3_a2 = findViewById(R.id.q3_a2_checkbox); //correct answer
+        q3_a3 = findViewById(R.id.q3_a3_checkbox);
+        q3_a4 = findViewById(R.id.q3_a4_checkbox); //correct answer
+        q4_a1 = findViewById(R.id.q4_a1_radiobutton);
+        q4_a2 = findViewById(R.id.q4_a2_radiobutton);
+        q4_a3 = findViewById(R.id.q4_a3_radiobutton);
+        q4_a4 = findViewById(R.id.q4_a4_radiobutton); //correct answer
+        q5_a1 = findViewById(R.id.q5_a1_text); //correct answer is 21
+
+
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     private int getScore() {
@@ -72,9 +83,7 @@ public class MainActivity extends AppCompatActivity {
         return score;
     }
 
-    /**
-     * @param view
-     */
+
     public void submitAnswer(View view) {
         String name = nameField.getText().toString();
 
@@ -110,8 +119,21 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "You're better than that, " + name + "! You have " + score + " points out of 5.", Toast.LENGTH_LONG).show();
         }
-        //submitButton.setEnabled(false);
-        reset();
+        changeColor();
+        submitButton.setEnabled(false);
+    }
+
+    // Change the color of the right answer
+
+    private void changeColor() {
+        q1_a1.setTextColor(getResources().getColor(R.color.green));
+        q2_a1.setTextColor(getResources().getColor(R.color.green));
+        q3_a1.setTextColor(getResources().getColor(R.color.green));
+        q3_a2.setTextColor(getResources().getColor(R.color.green));
+        q3_a4.setTextColor(getResources().getColor(R.color.green));
+        q4_a4.setTextColor(getResources().getColor(R.color.green));
+        q5_a1.setTextColor(getResources().getColor(R.color.green));
+        q5_a1.setText(getString(R.string.answer5), TextView.BufferType.EDITABLE);
     }
 
     private void reset() {
@@ -128,5 +150,17 @@ public class MainActivity extends AppCompatActivity {
         q3_a4.setChecked(false);
 
         q5_a1.setText("");
+
+        q1_a1.setTextColor(getResources().getColor(R.color.black));
+        q2_a1.setTextColor(getResources().getColor(R.color.black));
+        q3_a1.setTextColor(getResources().getColor(R.color.black));
+        q3_a2.setTextColor(getResources().getColor(R.color.black));
+        q3_a4.setTextColor(getResources().getColor(R.color.black));
+        q4_a4.setTextColor(getResources().getColor(R.color.black));
+        q5_a1.setTextColor(getResources().getColor(R.color.black));
+    }
+
+    public void Reset(View view) {
+        reset();
     }
 }

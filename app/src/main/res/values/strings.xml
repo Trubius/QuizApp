@@ -23,6 +23,8 @@
     <string name="q4_answer3">Johann Strauss I</string>
     <string name="q4_answer4">Johann Strauss II</string>
     <string name="question5">5. How many Chopin nocturnes have been made?</string>
+    <string name="answer5">21</string>
     <string name="write_your_answer">Write your answer here</string>
     <string name="submit">Submit</string>
+    <string name="reset">Reset</string>
 </resources>
