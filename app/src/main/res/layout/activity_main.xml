@@ -293,15 +293,14 @@
                     android:id="@+id/submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="submitAnswer"
                     android:text="@string/submit" />
-
+                <!--
                 <Button
                     android:id="@+id/reset_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="Reset"
-                    android:text="@string/reset" />
+                    android:text="@string/reset" /> -->
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

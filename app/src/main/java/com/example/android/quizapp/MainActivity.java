@@ -1,10 +1,8 @@
 package com.example.android.quizapp;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -24,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox q3_a1, q3_a2, q3_a3, q3_a4;
     RadioButton q4_a1, q4_a2, q4_a3, q4_a4;
     EditText q5_a1;
-    Button submitButton, resetButton;
-
+    Button submitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         nameField = findViewById(R.id.name_field);
         submitButton = findViewById(R.id.submit_button);
-        resetButton = findViewById(R.id.reset_button);
         q1 = findViewById(R.id.q1_radiogroup);
         q2 = findViewById(R.id.q2_radiogroup);
         q4 = findViewById(R.id.q4_radiogroup);
@@ -56,12 +52,17 @@ public class MainActivity extends AppCompatActivity {
         q4_a4 = findViewById(R.id.q4_a4_radiobutton); //correct answer
         q5_a1 = findViewById(R.id.q5_a1_text); //correct answer is 21
 
+        submitButton = new Button(this);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitButtonClicked();
+            }
+        });
+    }
 
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+    private void submitButtonClicked() {
+        submitButton.setText("TEST!");
     }
 
     private int getScore() {
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "You're better than that, " + name + "! You have " + score + " points out of 5.", Toast.LENGTH_LONG).show();
         }
         changeColor();
-        submitButton.setEnabled(false);
+        //submitButton.setEnabled(false);
     }
 
     // Change the color of the right answer
@@ -158,9 +159,5 @@ public class MainActivity extends AppCompatActivity {
         q3_a4.setTextColor(getResources().getColor(R.color.black));
         q4_a4.setTextColor(getResources().getColor(R.color.black));
         q5_a1.setTextColor(getResources().getColor(R.color.black));
-    }
-
-    public void Reset(View view) {
-        reset();
     }
 }
