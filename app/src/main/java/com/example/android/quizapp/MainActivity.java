@@ -138,13 +138,7 @@ public class MainActivity extends AppCompatActivity {
     // Change the color of the right answers
 
     private void changeColor() {
-        q1_a1.setTextColor(getResources().getColor(R.color.green));
-        q2_a1.setTextColor(getResources().getColor(R.color.green));
-        q3_a1.setTextColor(getResources().getColor(R.color.green));
-        q3_a2.setTextColor(getResources().getColor(R.color.green));
-        q3_a4.setTextColor(getResources().getColor(R.color.green));
-        q4_a4.setTextColor(getResources().getColor(R.color.green));
-        q5_a1.setTextColor(getResources().getColor(R.color.green));
+        changeTextInputFieldColors(R.color.green);
         q5_a1.setText(getString(R.string.answer5), TextView.BufferType.EDITABLE);
     }
 
@@ -163,12 +157,13 @@ public class MainActivity extends AppCompatActivity {
 
         q5_a1.setText("");
 
-        q1_a1.setTextColor(getResources().getColor(R.color.black));
-        q2_a1.setTextColor(getResources().getColor(R.color.black));
-        q3_a1.setTextColor(getResources().getColor(R.color.black));
-        q3_a2.setTextColor(getResources().getColor(R.color.black));
-        q3_a4.setTextColor(getResources().getColor(R.color.black));
-        q4_a4.setTextColor(getResources().getColor(R.color.black));
-        q5_a1.setTextColor(getResources().getColor(R.color.black));
+        changeTextInputFieldColors(R.color.black);
+    }
+
+    private void changeTextInputFieldColors(int colorCode) {
+        TextView[] inputs = {q1_a1, q2_a1, q3_a1, q3_a2, q3_a4, q4_a4, q5_a1, q5_a1};
+        for (int i = 0; i < inputs.length; i++) {
+            inputs[i].setTextColor(getResources().getColor(colorCode));
+        }
     }
 }
