@@ -61,10 +61,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String status = (String) v.getTag();
                 if (status.equals(SUBMIT_TAG)) {
-                    checkAnswers();
-                    displayResult();
-                    submitButton.setText(R.string.play_again);
-                    v.setTag(PLAY_TAG); // play again
+                    if (checkAnswers()) {
+                        displayResult();
+                        submitButton.setText(R.string.play_again);
+                        v.setTag(PLAY_TAG); // play again
+                    }
                 } else {
                     submitButton.setText(R.string.submit);
                     v.setTag(SUBMIT_TAG); // submit
@@ -77,33 +78,25 @@ public class MainActivity extends AppCompatActivity {
 
     // Checks answers before submit
 
-    private void checkAnswers() {
+    private boolean checkAnswers() {
         String name = nameField.getText().toString();
 
         if (name.equals("")) {
             Toast.makeText(this, "Don't forget to write down your name", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (q1.getCheckedRadioButtonId() == -1) {
+        } else if (q1.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "Please answer the 1st question!", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (q2.getCheckedRadioButtonId() == -1) {
+        } else if (q2.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "Please answer the 2nd question!", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (!q3_a1.isChecked() && !q3_a2.isChecked() && !q3_a4.isChecked() && !q3_a3.isChecked()) {
+        } else if (!q3_a1.isChecked() && !q3_a2.isChecked() && !q3_a4.isChecked() && !q3_a3.isChecked()) {
             Toast.makeText(this, "Please answer the 3rd question!", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (q4.getCheckedRadioButtonId() == -1) {
+        } else if (q4.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "Please answer the 4th question!", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (q5_a1.getText().toString().equalsIgnoreCase("")) {
+        } else if (q5_a1.getText().toString().equalsIgnoreCase("")) {
             Toast.makeText(this, "Please answer the 5th question!", Toast.LENGTH_LONG).show();
-            return;
+        } else {
+            return true;
         }
+        return false;
     }
 
     // Score counter
