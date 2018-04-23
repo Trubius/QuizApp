@@ -14,15 +14,18 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    int score = 0;
-    EditText nameField;
-    RadioGroup q1, q2, q4;
-    RadioButton q1_a1, q1_a2, q1_a3, q1_a4;
-    RadioButton q2_a1, q2_a2, q2_a3, q2_a4;
-    CheckBox q3_a1, q3_a2, q3_a3, q3_a4;
-    RadioButton q4_a1, q4_a2, q4_a3, q4_a4;
-    EditText q5_a1;
-    Button submitButton;
+    private static final String PLAY_TAG = "PLAY_TAG";
+    private static final String SUBMIT_TAG = "SUBMIT_TAG";
+    private int score = 0;
+    private EditText nameField;
+    private RadioGroup q1, q2, q4;
+    private RadioButton q1_a1, q1_a2, q1_a3, q1_a4;
+    private RadioButton q2_a1, q2_a2, q2_a3, q2_a4;
+    private CheckBox q3_a1, q3_a2, q3_a3, q3_a4;
+    private RadioButton q4_a1, q4_a2, q4_a3, q4_a4;
+    private EditText q5_a1;
+    private Button submitButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         q1 = findViewById(R.id.q1_radiogroup);
         q2 = findViewById(R.id.q2_radiogroup);
         q4 = findViewById(R.id.q4_radiogroup);
-        q1_a1 = findViewById(R.id.q1_a1_radiobutton);
-        q1_a2 = findViewById(R.id.q1_a2_radiobutton); //correct answer
+        q1_a1 = findViewById(R.id.q1_a1_radiobutton); //correct answer
+        q1_a2 = findViewById(R.id.q1_a2_radiobutton);
         q1_a3 = findViewById(R.id.q1_a3_radiobutton);
         q1_a4 = findViewById(R.id.q1_a4_radiobutton);
         q2_a1 = findViewById(R.id.q2_a1_radiobutton); //correct answer
@@ -52,43 +55,32 @@ public class MainActivity extends AppCompatActivity {
         q4_a4 = findViewById(R.id.q4_a4_radiobutton); //correct answer
         q5_a1 = findViewById(R.id.q5_a1_text); //correct answer is 21
 
-        submitButton = new Button(this);
+        submitButton.setTag(SUBMIT_TAG);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitButtonClicked();
+                String status = (String) v.getTag();
+                if (status.equals(SUBMIT_TAG)) {
+                    checkAnswers();
+                    displayResult();
+                    submitButton.setText(R.string.play_again);
+                    v.setTag(PLAY_TAG); // play again
+                } else {
+                    submitButton.setText(R.string.submit);
+                    v.setTag(SUBMIT_TAG); // submit
+                    reset();
+                }
             }
         });
+
     }
 
-    private void submitButtonClicked() {
-        submitButton.setText("TEST!");
-    }
+    // Checks answers before submit
 
-    private int getScore() {
-        if (q1_a2.isChecked()) {
-            score++;
-        }
-        if (q2_a1.isChecked()) {
-            score++;
-        }
-        if (q3_a1.isChecked() && q3_a2.isChecked() && q3_a4.isChecked() && !q3_a3.isChecked()) {
-            score++;
-        }
-        if (q4_a4.isChecked()) {
-            score++;
-        }
-        if (Integer.parseInt(q5_a1.getText().toString()) == 21) {
-            score++;
-        }
-        return score;
-    }
-
-
-    public void submitAnswer(View view) {
+    private void checkAnswers() {
         String name = nameField.getText().toString();
 
-        if (name.equalsIgnoreCase("")) {
+        if (name.equals("")) {
             Toast.makeText(this, "Don't forget to write down your name", Toast.LENGTH_LONG).show();
             return;
         }
@@ -112,7 +104,34 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please answer the 5th question!", Toast.LENGTH_LONG).show();
             return;
         }
-        getScore();
+    }
+
+    // Score counter
+
+    private void calculateScore() {
+        if (q1_a2.isChecked()) {
+            score++;
+        }
+        if (q2_a1.isChecked()) {
+            score++;
+        }
+        if (q3_a1.isChecked() && q3_a2.isChecked() && q3_a4.isChecked() && !q3_a3.isChecked()) {
+            score++;
+        }
+        if (q4_a4.isChecked()) {
+            score++;
+        }
+        String q5Answer = q5_a1.getText().toString();
+        if (q5Answer.length() > 0 && (Integer.parseInt(q5Answer) == 21)) {
+            score++;
+        }
+    }
+
+    // Display your result in a toast
+
+    private void displayResult() {
+        String name = nameField.getText().toString();
+        calculateScore();
         if (score == 5) {
             Toast.makeText(this, "You did it, " + name + "! You have " + score + " points out of 5.", Toast.LENGTH_LONG).show();
         } else if (score >= 3) {
@@ -121,10 +140,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "You're better than that, " + name + "! You have " + score + " points out of 5.", Toast.LENGTH_LONG).show();
         }
         changeColor();
-        //submitButton.setEnabled(false);
     }
 
-    // Change the color of the right answer
+    // Change the color of the right answers
 
     private void changeColor() {
         q1_a1.setTextColor(getResources().getColor(R.color.green));
