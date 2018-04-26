@@ -203,7 +203,7 @@
                 <TextView
                     android:id="@+id/question4"
                     style="@style/QuestionTheme"
-                    android:text="@string/question_4" />
+                    android:text="@string/question4" />
 
                 <View style="@style/GreyLine" />
 
@@ -250,7 +250,7 @@
 
 
                 <TextView
-                    android:id="@+id/question5"
+                    android:id="@+id/question_5"
                     style="@style/QuestionTheme"
                     android:text="@string/question5" />
 
@@ -285,6 +285,70 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_default"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/play_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/card_padding"
+                        android:background="@null"
+                        android:src="@drawable/ic_play" />
+
+                    <TextView
+                        android:id="@+id/question6"
+                        style="@style/Question2Theme"
+                        android:text="@string/question6" />
+
+                </LinearLayout>
+
+                <View style="@style/GreyLine" />
+
+                <RadioGroup
+                    android:id="@+id/q6_radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/q6_a1_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="@string/q6_answer1" />
+
+                    <RadioButton
+                        android:id="@+id/q6_a2_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="@string/q6_answer2" />
+
+                    <RadioButton
+                        android:id="@+id/q6_a3_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="@string/q6_answer3" />
+
+                    <RadioButton
+                        android:id="@+id/q6_a4_radiobutton"
+                        style="@style/AnswerTheme"
+                        android:text="@string/q6_answer4" />
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/submit_area"
+            style="@style/CardTheme"
+            card_view:cardCornerRadius="@dimen/card_corner_radius"
+            card_view:cardElevation="@dimen/card_padding"
+            card_view:contentPadding="@dimen/card_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -294,7 +358,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/submit" />
-                
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

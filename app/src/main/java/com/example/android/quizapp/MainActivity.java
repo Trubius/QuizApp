@@ -1,21 +1,24 @@
 package com.example.android.quizapp;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private static final String PLAY_TAG = "PLAY_TAG";
     private static final String SUBMIT_TAG = "SUBMIT_TAG";
+    final MediaPlayer mp = MediaPlayer.create(this, R.raw.answer6);
     private int score = 0;
     private EditText nameField;
     private RadioGroup q1, q2, q4;
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton q4_a1, q4_a2, q4_a3, q4_a4;
     private EditText q5_a1;
     private Button submitButton;
-
+    private ImageButton playButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         nameField = findViewById(R.id.name_field);
         submitButton = findViewById(R.id.submit_button);
+        playButton = findViewById(R.id.play_button);
         q1 = findViewById(R.id.q1_radiogroup);
         q2 = findViewById(R.id.q2_radiogroup);
         q4 = findViewById(R.id.q4_radiogroup);
@@ -56,24 +60,23 @@ public class MainActivity extends AppCompatActivity {
         q5_a1 = findViewById(R.id.q5_a1_text); //correct answer is 21
 
         submitButton.setTag(SUBMIT_TAG);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String status = (String) v.getTag();
-                if (status.equals(SUBMIT_TAG)) {
-                    if (checkAnswers()) {
-                        displayResult();
-                        submitButton.setText(R.string.play_again);
-                        v.setTag(PLAY_TAG); // play again
-                    }
-                } else {
-                    submitButton.setText(R.string.submit);
-                    v.setTag(SUBMIT_TAG); // submit
-                    reset();
-                }
-            }
-        });
+        submitButton.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+        String status = (String) v.getTag();
+        if (status.equals(SUBMIT_TAG)) {
+            if (checkAnswers()) {
+                displayResult();
+                submitButton.setText(R.string.play_again);
+                v.setTag(PLAY_TAG); // play again
+            }
+        } else {
+            submitButton.setText(R.string.submit);
+            v.setTag(SUBMIT_TAG); // submit
+            reset();
+        }
     }
 
     // Checks answers before submit
@@ -139,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeColor() {
         changeTextInputFieldColors(R.color.green);
-        q5_a1.setText(getString(R.string.answer5), TextView.BufferType.EDITABLE);
+        q5_a1.setText(getString(R.string.answer5), TextView.BufferType.NORMAL);
     }
 
     private void reset() {
