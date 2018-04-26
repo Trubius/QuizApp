@@ -18,15 +18,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String PLAY_TAG = "PLAY_TAG";
     private static final String SUBMIT_TAG = "SUBMIT_TAG";
-    final MediaPlayer mp = MediaPlayer.create(this, R.raw.answer6);
+    MediaPlayer mPlayer;
     private int score = 0;
     private EditText nameField;
-    private RadioGroup q1, q2, q4;
-    private RadioButton q1_a1, q1_a2, q1_a3, q1_a4;
-    private RadioButton q2_a1, q2_a2, q2_a3, q2_a4;
+    private RadioGroup q1, q2, q4, q6;
+    private RadioButton q1_a2;
+    private RadioButton q2_a1;
     private CheckBox q3_a1, q3_a2, q3_a3, q3_a4;
-    private RadioButton q4_a1, q4_a2, q4_a3, q4_a4;
+    private RadioButton q4_a4;
     private EditText q5_a1;
+    private RadioButton q6_a3;
     private Button submitButton;
     private ImageButton playButton;
 
@@ -41,41 +42,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         q1 = findViewById(R.id.q1_radiogroup);
         q2 = findViewById(R.id.q2_radiogroup);
         q4 = findViewById(R.id.q4_radiogroup);
-        q1_a1 = findViewById(R.id.q1_a1_radiobutton); //correct answer
-        q1_a2 = findViewById(R.id.q1_a2_radiobutton);
-        q1_a3 = findViewById(R.id.q1_a3_radiobutton);
-        q1_a4 = findViewById(R.id.q1_a4_radiobutton);
+        q6 = findViewById(R.id.q6_radiogroup);
+        q1_a2 = findViewById(R.id.q1_a2_radiobutton); //correct answer
         q2_a1 = findViewById(R.id.q2_a1_radiobutton); //correct answer
-        q2_a2 = findViewById(R.id.q2_a2_radiobutton);
-        q2_a3 = findViewById(R.id.q2_a3_radiobutton);
-        q2_a4 = findViewById(R.id.q2_a4_radiobutton);
         q3_a1 = findViewById(R.id.q3_a1_checkbox); //correct answer
         q3_a2 = findViewById(R.id.q3_a2_checkbox); //correct answer
         q3_a3 = findViewById(R.id.q3_a3_checkbox);
         q3_a4 = findViewById(R.id.q3_a4_checkbox); //correct answer
-        q4_a1 = findViewById(R.id.q4_a1_radiobutton);
-        q4_a2 = findViewById(R.id.q4_a2_radiobutton);
-        q4_a3 = findViewById(R.id.q4_a3_radiobutton);
         q4_a4 = findViewById(R.id.q4_a4_radiobutton); //correct answer
         q5_a1 = findViewById(R.id.q5_a1_text); //correct answer is 21
+        q6_a3 = findViewById(R.id.q6_a3_radiobutton); //correct answer
+
 
         submitButton.setTag(SUBMIT_TAG);
         submitButton.setOnClickListener(this);
+        playButton.setOnClickListener(this);
+        mPlayer = MediaPlayer.create(this, R.raw.answer6);
     }
 
     @Override
     public void onClick(View v) {
         String status = (String) v.getTag();
-        if (status.equals(SUBMIT_TAG)) {
-            if (checkAnswers()) {
-                displayResult();
-                submitButton.setText(R.string.play_again);
-                v.setTag(PLAY_TAG); // play again
-            }
-        } else {
-            submitButton.setText(R.string.submit);
-            v.setTag(SUBMIT_TAG); // submit
-            reset();
+        switch (v.getId()) {
+            case R.id.play_button:
+                if (mPlayer.isPlaying()) {   // Checks music if it's playing
+                    mPlayer.pause();
+                    playButton.setImageResource(R.drawable.ic_play);
+                } else {
+                    mPlayer.start();
+                    playButton.setImageResource(R.drawable.ic_pause);
+                }
+                break;
+            case R.id.submit_button:
+                if (status.equals(SUBMIT_TAG)) {
+                    if (checkAnswers()) {
+                        displayResult();
+                        submitButton.setText(R.string.play_again);
+                        v.setTag(PLAY_TAG); // Set the text to play again
+                    }
+                } else {
+                    submitButton.setText(R.string.submit);
+                    v.setTag(SUBMIT_TAG); // Set the text to submit
+                    reset();
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -96,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "Please answer the 4th question!", Toast.LENGTH_LONG).show();
         } else if (q5_a1.getText().toString().equalsIgnoreCase("")) {
             Toast.makeText(this, "Please answer the 5th question!", Toast.LENGTH_LONG).show();
+        } else if (q6.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Please answer the 6th question!", Toast.LENGTH_LONG).show();
         } else {
             return true;
         }
@@ -119,6 +133,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         String q5Answer = q5_a1.getText().toString();
         if (q5Answer.length() > 0 && (Integer.parseInt(q5Answer) == 21)) {
+            score++;
+        }
+        if (q6_a3.isChecked()) {
             score++;
         }
     }
@@ -152,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         q1.clearCheck();
         q2.clearCheck();
         q4.clearCheck();
+        q6.clearCheck();
 
         q3_a1.setChecked(false);
         q3_a2.setChecked(false);
@@ -164,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void changeTextInputFieldColors(int colorCode) {
-        TextView[] inputs = {q1_a1, q2_a1, q3_a1, q3_a2, q3_a4, q4_a4, q5_a1, q5_a1};
+        TextView[] inputs = {q1_a2, q2_a1, q3_a1, q3_a2, q3_a4, q4_a4, q5_a1, q6_a3};
         for (int i = 0; i < inputs.length; i++) {
             inputs[i].setTextColor(getResources().getColor(colorCode));
         }
