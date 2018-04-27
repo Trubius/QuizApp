@@ -17,7 +17,7 @@
     <string name="q3_answer2">Ode to Joy</string>
     <string name="q3_answer3">The Trout</string>
     <string name="q3_answer4">Fidelio</string>
-    <string name="question4">4. Who composed the \"The Blue Danube\" waltz?</string>
+    <string name="question4">4. Who composed the The Blue Danube waltz?</string>
     <string name="q4_answer1">Chopin</string>
     <string name="q4_answer2">Schubert</string>
     <string name="q4_answer3">Johann Strauss I</string>
@@ -28,7 +28,7 @@
     <string name="q6_answer1">Mozart: Piano Concerto No. 21 in C major, II. Andante</string>
     <string name="q6_answer2">Beethoven: Turkish march in B-flat major, Vivace</string>
     <string name="q6_answer3">Mozart: Piano Sonata No. 11 in A major, III. Alla turca</string>
-    <string name="q6_answer4">Liszt: La Campenella in G-sharp minor</string>
+    <string name="q6_answer4">Liszt: La Campanella in G-sharp minor</string>
     <string name="write_your_answer">Write your answer here</string>
     <string name="submit">Submit</string>
     <string name="play_again">Play again</string>
