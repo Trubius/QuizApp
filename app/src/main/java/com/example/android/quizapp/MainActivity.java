@@ -35,11 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button submitButton;
     private ImageButton playButton;
 
-    public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,9 +91,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     reset();
                 }
                 break;
-            default:
-                break;
         }
+    }
+
+    public void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
     /**
@@ -167,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             score++;
         }
         String q5Answer = q5_a1.getText().toString();
-        if (q5Answer.length() > 0 && (Integer.parseInt(q5Answer) == 21)) {
+        if (q5Answer.length() > 0 && (Integer.parseInt(q5Answer) == 9)) {
             score++;
         }
         if (q6_a3.isChecked()) {
