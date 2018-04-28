@@ -111,32 +111,28 @@
 
                 <View style="@style/GreyLine" />
 
-                <RadioGroup
-                    android:id="@+id/q2_radiogroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
-                    <RadioButton
-                        android:id="@+id/q2_a1_radiobutton"
-                        style="@style/AnswerTheme"
-                        android:text="@string/q2_answer1" />
+                <CheckBox
+                    android:id="@+id/q2_a1_checkbox"
+                    style="@style/AnswerTheme"
+                    android:text="@string/q2_answer1" />
 
-                    <RadioButton
-                        android:id="@+id/q2_a2_radiobutton"
-                        style="@style/AnswerTheme"
-                        android:text="@string/q2_answer2" />
+                <CheckBox
+                    android:id="@+id/q2_a2_checkbox"
+                    style="@style/AnswerTheme"
+                    android:text="@string/q2_answer2" />
 
 
-                    <RadioButton
-                        android:id="@+id/q2_a3_radiobutton"
-                        style="@style/AnswerTheme"
-                        android:text="@string/q2_answer3" />
+                <CheckBox
+                    android:id="@+id/q2_a3_checkbox"
+                    style="@style/AnswerTheme"
+                    android:text="@string/q2_answer3" />
 
-                    <RadioButton
-                        android:id="@+id/q2_a4_radiobutton"
-                        style="@style/AnswerTheme"
-                        android:text="@string/q2_answer4" />
-                </RadioGroup>
+                <CheckBox
+                    android:id="@+id/q2_a4_checkbox"
+                    style="@style/AnswerTheme"
+                    android:text="@string/q2_answer4" />
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
 

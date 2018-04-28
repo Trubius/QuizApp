@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MediaPlayer mPlayer;
     private int score = 0;
     private EditText nameField;
-    private RadioGroup q1, q2, q4, q6;
+    private RadioGroup q1, q4, q6;
     private RadioButton q1_a2;
-    private RadioButton q2_a1;
+    private CheckBox q2_a1, q2_a2, q2_a3, q2_a4;
     private CheckBox q3_a1, q3_a2, q3_a3, q3_a4;
     private RadioButton q4_a4;
     private EditText q5_a1;
@@ -44,18 +44,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         submitButton = findViewById(R.id.submit_button);
         playButton = findViewById(R.id.play_button);
         q1 = findViewById(R.id.q1_radiogroup);
-        q2 = findViewById(R.id.q2_radiogroup);
         q4 = findViewById(R.id.q4_radiogroup);
         q6 = findViewById(R.id.q6_radiogroup);
-        q1_a2 = findViewById(R.id.q1_a2_radiobutton); //correct answer
-        q2_a1 = findViewById(R.id.q2_a1_radiobutton); //correct answer
-        q3_a1 = findViewById(R.id.q3_a1_checkbox); //correct answer
-        q3_a2 = findViewById(R.id.q3_a2_checkbox); //correct answer
+        q1_a2 = findViewById(R.id.q1_a2_radiobutton);
+        q2_a1 = findViewById(R.id.q2_a1_checkbox);
+        q2_a2 = findViewById(R.id.q2_a2_checkbox);
+        q2_a3 = findViewById(R.id.q2_a3_checkbox);
+        q2_a4 = findViewById(R.id.q2_a4_checkbox);
+        q3_a1 = findViewById(R.id.q3_a1_checkbox);
+        q3_a2 = findViewById(R.id.q3_a2_checkbox);
         q3_a3 = findViewById(R.id.q3_a3_checkbox);
-        q3_a4 = findViewById(R.id.q3_a4_checkbox); //correct answer
-        q4_a4 = findViewById(R.id.q4_a4_radiobutton); //correct answer
-        q5_a1 = findViewById(R.id.q5_a1_text); //correct answer is 21
-        q6_a3 = findViewById(R.id.q6_a3_radiobutton); //correct answer
+        q3_a4 = findViewById(R.id.q3_a4_checkbox);
+        q4_a4 = findViewById(R.id.q4_a4_radiobutton);
+        q5_a1 = findViewById(R.id.q5_a1_text);
+        q6_a3 = findViewById(R.id.q6_a3_radiobutton);
 
 
         submitButton.setTag(SUBMIT_TAG);
@@ -133,9 +135,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "Don't forget to write down your name", Toast.LENGTH_LONG).show();
         } else if (q1.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "Please answer the 1st question!", Toast.LENGTH_LONG).show();
-        } else if (q2.getCheckedRadioButtonId() == -1) {
+        } else if (!q2_a1.isChecked() && !q2_a2.isChecked() && !q2_a3.isChecked() && !q2_a4.isChecked()) {
             Toast.makeText(this, "Please answer the 2nd question!", Toast.LENGTH_LONG).show();
-        } else if (!q3_a1.isChecked() && !q3_a2.isChecked() && !q3_a4.isChecked() && !q3_a3.isChecked()) {
+        } else if (!q3_a1.isChecked() && !q3_a2.isChecked() && !q3_a3.isChecked() && !q3_a4.isChecked()) {
             Toast.makeText(this, "Please answer the 3rd question!", Toast.LENGTH_LONG).show();
         } else if (q4.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "Please answer the 4th question!", Toast.LENGTH_LONG).show();
@@ -200,9 +202,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         score = 0;
 
         q1.clearCheck();
-        q2.clearCheck();
         q4.clearCheck();
         q6.clearCheck();
+
+        q2_a1.setChecked(false);
+        q2_a2.setChecked(false);
+        q2_a3.setChecked(false);
+        q2_a4.setChecked(false);
 
         q3_a1.setChecked(false);
         q3_a2.setChecked(false);
@@ -215,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void changeTextInputFieldColors(int colorCode) {
-        TextView[] inputs = {q1_a2, q2_a1, q3_a1, q3_a2, q3_a4, q4_a4, q5_a1, q6_a3};
+        TextView[] inputs = {q1_a2, q2_a1, q2_a3, q2_a4, q3_a3, q3_a4, q4_a4, q5_a1, q6_a3};
         for (int i = 0; i < inputs.length; i++) {
             inputs[i].setTextColor(getResources().getColor(colorCode));
         }
