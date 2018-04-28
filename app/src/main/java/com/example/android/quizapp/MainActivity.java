@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -24,12 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private int score = 0;
     private EditText nameField;
     private RadioGroup q1, q4, q6;
-    private RadioButton q1_a2;
-    private CheckBox q2_a1, q2_a2, q2_a3, q2_a4;
-    private CheckBox q3_a1, q3_a2, q3_a3, q3_a4;
-    private RadioButton q4_a4;
+    private RadioButton q1_a2, q4_a4, q6_a3;
+    private CheckBox q2_a1, q2_a2, q2_a3, q2_a4, q3_a1, q3_a2, q3_a3, q3_a4;
     private EditText q5_a1;
-    private RadioButton q6_a3;
     private Button submitButton;
     private ImageButton playButton;
 
@@ -41,48 +39,26 @@ public class MainActivity extends AppCompatActivity {
         nameField = findViewById(R.id.name_field);
         submitButton = findViewById(R.id.submit_button);
         playButton = findViewById(R.id.play_button);
-        q1 = findViewById(R.id.q1_radiogroup);
-        q4 = findViewById(R.id.q4_radiogroup);
-        q6 = findViewById(R.id.q6_radiogroup);
-        q1_a2 = findViewById(R.id.q1_a2_radiobutton);
-        q2_a1 = findViewById(R.id.q2_a1_checkbox);
-        q2_a2 = findViewById(R.id.q2_a2_checkbox);
-        q2_a3 = findViewById(R.id.q2_a3_checkbox);
-        q2_a4 = findViewById(R.id.q2_a4_checkbox);
-        q3_a1 = findViewById(R.id.q3_a1_checkbox);
-        q3_a2 = findViewById(R.id.q3_a2_checkbox);
-        q3_a3 = findViewById(R.id.q3_a3_checkbox);
-        q3_a4 = findViewById(R.id.q3_a4_checkbox);
-        q4_a4 = findViewById(R.id.q4_a4_radiobutton);
-        q5_a1 = findViewById(R.id.q5_a1_text);
-        q6_a3 = findViewById(R.id.q6_a3_radiobutton);
+        q1 = findViewById(R.id.q1);
+        q4 = findViewById(R.id.q4);
+        q6 = findViewById(R.id.q6);
+        q1_a2 = findViewById(R.id.q1_a2);
+        q2_a1 = findViewById(R.id.q2_a1);
+        q2_a2 = findViewById(R.id.q2_a2);
+        q2_a3 = findViewById(R.id.q2_a3);
+        q2_a4 = findViewById(R.id.q2_a4);
+        q3_a1 = findViewById(R.id.q3_a1);
+        q3_a2 = findViewById(R.id.q3_a2);
+        q3_a3 = findViewById(R.id.q3_a3);
+        q3_a4 = findViewById(R.id.q3_a4);
+        q4_a4 = findViewById(R.id.q4_a4);
+        q5_a1 = findViewById(R.id.q5_a1);
+        q6_a3 = findViewById(R.id.q6_a3);
 
         submitButton.setOnClickListener(new ButtonClick());
         playButton.setOnClickListener(new ButtonClick());
         mPlayer = MediaPlayer.create(this, R.raw.answer6);
         setupUI(findViewById(R.id.parent_view));
-    }
-
-    public void submitButtonClicked() {
-        if (submitButton.getText().toString().equals("Submit")) {
-            if (checkAnswers()) {
-                displayResult();
-                submitButton.setText(R.string.play_again);
-            }
-        } else {
-            submitButton.setText(R.string.submit);
-            reset();
-        }
-    }
-
-    public void playButtonClicked() {
-        if (mPlayer.isPlaying()) {   // Checks music if it's playing
-            mPlayer.pause();
-            playButton.setImageResource(R.drawable.ic_play);
-        } else {
-            mPlayer.start();
-            playButton.setImageResource(R.drawable.ic_pause);
-        }
     }
 
     public void hideSoftKeyboard(Activity activity) {
@@ -142,31 +118,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    /**
-     * Score counter
-     */
-
-    private void calculateScore() {
-        if (q1_a2.isChecked()) {
-            score++;
-        }
-        if (q2_a1.isChecked()) {
-            score++;
-        }
-        if (q3_a1.isChecked() && q3_a2.isChecked() && q3_a4.isChecked() && !q3_a3.isChecked()) {
-            score++;
-        }
-        if (q4_a4.isChecked()) {
-            score++;
-        }
-        String q5Answer = q5_a1.getText().toString();
-        if (q5Answer.length() > 0 && (Integer.parseInt(q5Answer) == 9)) {
-            score++;
-        }
-        if (q6_a3.isChecked()) {
-            score++;
-        }
-    }
 
     /**
      * Display your result in a toast
@@ -186,12 +137,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Change the color of the right answers
+     * Score counter
      */
 
-    private void changeColor() {
-        changeTextInputFieldColors(R.color.green);
-        q5_a1.setText(getString(R.string.answer5), TextView.BufferType.NORMAL);
+    private void calculateScore() {
+        CompoundButton[] rightAnswers = {q1_a2, q2_a1, q2_a3, q2_a4, q3_a3, q3_a4, q4_a4, q6_a3};
+        CompoundButton[] wrongAnswers = {q2_a2, q3_a1, q3_a2};
+        for (int i = 0; i < rightAnswers.length; i++) {
+            if (rightAnswers[i].isChecked()) {
+                score++;
+            }
+        }
+        for (int j = 0; j < wrongAnswers.length; j++) {
+            if (!wrongAnswers[j].isChecked()) {
+                score++;
+            }
+        }
+        String q5Answer = q5_a1.getText().toString();
+        if (q5Answer.length() > 0 && (Integer.parseInt(q5Answer) == 9)) {
+            score++;
+        }
     }
 
     private void reset() {
@@ -217,10 +182,41 @@ public class MainActivity extends AppCompatActivity {
         changeTextInputFieldColors(R.color.black);
     }
 
+    /**
+     * Change the color of the right answers
+     */
+
+    private void changeColor() {
+        changeTextInputFieldColors(R.color.green);
+        q5_a1.setText(getString(R.string.answer5), TextView.BufferType.NORMAL);
+    }
+
     private void changeTextInputFieldColors(int colorCode) {
         TextView[] inputs = {q1_a2, q2_a1, q2_a3, q2_a4, q3_a3, q3_a4, q4_a4, q5_a1, q6_a3};
         for (int i = 0; i < inputs.length; i++) {
             inputs[i].setTextColor(getResources().getColor(colorCode));
+        }
+    }
+
+    public void submitButtonClicked() {
+        if (submitButton.getText().toString().equals("Submit")) {
+            if (checkAnswers()) {
+                displayResult();
+                submitButton.setText(R.string.play_again);
+            }
+        } else {
+            submitButton.setText(R.string.submit);
+            reset();
+        }
+    }
+
+    public void playButtonClicked() {
+        if (mPlayer.isPlaying()) {   // Checks music if it's playing
+            mPlayer.pause();
+            playButton.setImageResource(R.drawable.ic_play);
+        } else {
+            mPlayer.start();
+            playButton.setImageResource(R.drawable.ic_pause);
         }
     }
 
