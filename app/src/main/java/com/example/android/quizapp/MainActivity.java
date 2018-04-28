@@ -126,12 +126,12 @@ public class MainActivity extends AppCompatActivity {
     private void displayResult() {
         String name = nameField.getText().toString();
         calculateScore();
-        if (score == 5) {
-            Toast.makeText(this, "You did it, " + name + "! You have " + score + " points out of 5.", Toast.LENGTH_LONG).show();
-        } else if (score >= 3) {
-            Toast.makeText(this, "Not bad " + name + ", you have " + score + " points out of 5.", Toast.LENGTH_LONG).show();
+        if (score == 12) {
+            Toast.makeText(this, "You did it, " + name + "! You have " + score + " points out of 12.", Toast.LENGTH_LONG).show();
+        } else if (score >= 6) {
+            Toast.makeText(this, "Not bad " + name + ", you have " + score + " points out of 12.", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "You're better than that, " + name + "! You have " + score + " points out of 5.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You're better than that, " + name + "! You have " + score + " points out of 12.", Toast.LENGTH_LONG).show();
         }
         changeColor();
     }
