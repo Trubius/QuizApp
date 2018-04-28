@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_view"
@@ -29,23 +28,32 @@
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/name_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/activity_margin"
-            android:hint="@string/write_your_name_here"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:textSize="@dimen/question_text_size" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/name_area"
+            style="@style/CardTheme"
+            card_view:cardCornerRadius="@dimen/card_corner_radius"
+            card_view:contentPadding="@dimen/card_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/name_field"
+                    style="@style/EditTextTheme"
+                    android:hint="@string/write_your_name_here" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:id="@+id/card_question1"
             style="@style/CardTheme"
             card_view:cardCornerRadius="@dimen/card_corner_radius"
-            card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
             <LinearLayout
@@ -93,7 +101,6 @@
             android:id="@+id/card_question2"
             style="@style/CardTheme"
             card_view:cardCornerRadius="@dimen/card_corner_radius"
-            card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
             <LinearLayout
@@ -140,7 +147,6 @@
             android:id="@+id/card_question3"
             style="@style/CardTheme"
             card_view:cardCornerRadius="@dimen/card_corner_radius"
-            card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
             <LinearLayout
@@ -187,7 +193,6 @@
             android:id="@+id/card_question4"
             style="@style/CardTheme"
             card_view:cardCornerRadius="@dimen/card_corner_radius"
-            card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
             <LinearLayout
@@ -235,7 +240,6 @@
             android:id="@+id/card_question5"
             style="@style/CardTheme"
             card_view:cardCornerRadius="@dimen/card_corner_radius"
-            card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
             <LinearLayout
@@ -256,16 +260,9 @@
 
                 <EditText
                     android:id="@+id/q5_a1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/activity_margin"
+                    style="@style/EditTextTheme"
                     android:hint="@string/write_your_answer"
-                    android:inputType="number"
-                    android:singleLine="true"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:textSize="@dimen/question_text_size" />
+                    android:inputType="number" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -274,7 +271,6 @@
             android:id="@+id/card_question6"
             style="@style/CardTheme"
             card_view:cardCornerRadius="@dimen/card_corner_radius"
-            card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
             <LinearLayout
@@ -338,7 +334,6 @@
             android:id="@+id/submit_area"
             style="@style/CardTheme"
             card_view:cardCornerRadius="@dimen/card_corner_radius"
-            card_view:cardElevation="@dimen/card_padding"
             card_view:contentPadding="@dimen/card_padding">
 
             <LinearLayout
