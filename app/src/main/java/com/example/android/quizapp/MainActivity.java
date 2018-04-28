@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "You're better than that, " + name + "! You have " + score + " points out of 12.", Toast.LENGTH_LONG).show();
         }
         changeColor();
+        setAnswerButtonsDisabled(false);
     }
 
     /**
@@ -180,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         q5_a1.setText("");
 
         changeTextInputFieldColors(R.color.black);
+        setAnswerButtonsDisabled(true);
     }
 
     /**
@@ -196,6 +198,21 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < inputs.length; i++) {
             inputs[i].setTextColor(getResources().getColor(colorCode));
         }
+    }
+
+    private void setAnswerButtonsDisabled(boolean enabled) {
+        CheckBox[] checkBoxes = {q2_a1, q2_a2, q2_a3, q2_a4, q3_a1, q3_a2, q3_a3, q3_a4,};
+        RadioGroup[] radioGroups = {q1, q4, q6};
+        for (int i = 0; i < checkBoxes.length; i++) {
+            checkBoxes[i].setEnabled(enabled);
+        }
+        for (int j = 0; j < radioGroups.length; j++) {
+            for (int k = 0; k < radioGroups[j].getChildCount(); k++) {
+                radioGroups[j].getChildAt(k).setEnabled(enabled);
+            }
+        }
+        nameField.setEnabled(enabled);
+        q5_a1.setEnabled(enabled);
     }
 
     public void submitButtonClicked() {
