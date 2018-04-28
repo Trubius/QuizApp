@@ -17,11 +17,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
 
-    private static final String PLAY_TAG = "PLAY_TAG";
-    private static final String SUBMIT_TAG = "SUBMIT_TAG";
     MediaPlayer mPlayer;
     private int score = 0;
     private EditText nameField;
@@ -59,40 +57,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         q5_a1 = findViewById(R.id.q5_a1_text);
         q6_a3 = findViewById(R.id.q6_a3_radiobutton);
 
-
-        submitButton.setTag(SUBMIT_TAG);
-        submitButton.setOnClickListener(this);
-        playButton.setOnClickListener(this);
+        submitButton.setOnClickListener(new ButtonClick());
+        playButton.setOnClickListener(new ButtonClick());
         mPlayer = MediaPlayer.create(this, R.raw.answer6);
         setupUI(findViewById(R.id.parent_view));
     }
 
-    @Override
-    public void onClick(View v) {
-        String status = (String) v.getTag();
-        switch (v.getId()) {
-            case R.id.play_button:
-                if (mPlayer.isPlaying()) {   // Checks music if it's playing
-                    mPlayer.pause();
-                    playButton.setImageResource(R.drawable.ic_play);
-                } else {
-                    mPlayer.start();
-                    playButton.setImageResource(R.drawable.ic_pause);
-                }
-                break;
-            case R.id.submit_button:
-                if (status.equals(SUBMIT_TAG)) {
-                    if (checkAnswers()) {
-                        displayResult();
-                        submitButton.setText(R.string.play_again);
-                        v.setTag(PLAY_TAG); // Set the text to play again
-                    }
-                } else {
-                    submitButton.setText(R.string.submit);
-                    v.setTag(SUBMIT_TAG); // Set the text to submit
-                    reset();
-                }
-                break;
+    public void submitButtonClicked() {
+        if (submitButton.getText().toString().equals("Submit")) {
+            if (checkAnswers()) {
+                displayResult();
+                submitButton.setText(R.string.play_again);
+            }
+        } else {
+            submitButton.setText(R.string.submit);
+            reset();
+        }
+    }
+
+    public void playButtonClicked() {
+        if (mPlayer.isPlaying()) {   // Checks music if it's playing
+            mPlayer.pause();
+            playButton.setImageResource(R.drawable.ic_play);
+        } else {
+            mPlayer.start();
+            playButton.setImageResource(R.drawable.ic_pause);
         }
     }
 
@@ -126,7 +115,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    // Checks answers before submit
+    /**
+     * Checks answers before submit
+     */
 
     private boolean checkAnswers() {
         String name = nameField.getText().toString();
@@ -151,7 +142,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    // Score counter
+    /**
+     * Score counter
+     */
 
     private void calculateScore() {
         if (q1_a2.isChecked()) {
@@ -175,7 +168,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    // Display your result in a toast
+    /**
+     * Display your result in a toast
+     */
 
     private void displayResult() {
         String name = nameField.getText().toString();
@@ -190,7 +185,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         changeColor();
     }
 
-    // Change the color of the right answers
+    /**
+     * Change the color of the right answers
+     */
 
     private void changeColor() {
         changeTextInputFieldColors(R.color.green);
@@ -224,6 +221,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView[] inputs = {q1_a2, q2_a1, q2_a3, q2_a4, q3_a3, q3_a4, q4_a4, q5_a1, q6_a3};
         for (int i = 0; i < inputs.length; i++) {
             inputs[i].setTextColor(getResources().getColor(colorCode));
+        }
+    }
+
+    class ButtonClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.play_button:
+                    playButtonClicked();
+                    break;
+                case R.id.submit_button:
+                    submitButtonClicked();
+                    break;
+            }
         }
     }
 }
