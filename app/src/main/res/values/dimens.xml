@@ -8,4 +8,5 @@
     <dimen name="checkbox_padding">8dp</dimen>
     <dimen name="question_text_size">16sp</dimen>
     <dimen name="title_text_size">36sp</dimen>
+    <dimen name="landscape_margin">100dp</dimen>
 </resources>

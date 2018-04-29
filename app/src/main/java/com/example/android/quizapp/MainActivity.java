@@ -61,16 +61,16 @@ public class MainActivity extends AppCompatActivity {
             mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.answer6);
         }
         initFocus();
-        setupUI(findViewById(R.id.parent_view));
+        setupUI(findViewById(R.id.root_view));
     }
 
     private void requestFocus() {
-        View parentView = (findViewById(R.id.parent_view));
+        View parentView = (findViewById(R.id.root_view));
         parentView.requestFocus();
     }
 
     private void initFocus() {
-        View parentView = (findViewById(R.id.parent_view));
+        View parentView = (findViewById(R.id.root_view));
         parentView.setFocusableInTouchMode(true);
         requestFocus();
     }
