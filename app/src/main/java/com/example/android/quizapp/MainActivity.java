@@ -18,6 +18,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Created by Gábor Trubel
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String SUBMIT_TEXT = "Submit";
@@ -36,12 +40,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nameField = findViewById(R.id.name_field);
-        submitButton = findViewById(R.id.submit_button);
-        playButton = findViewById(R.id.play_button);
-        q1 = findViewById(R.id.q1);
-        q4 = findViewById(R.id.q4);
-        q6 = findViewById(R.id.q6);
         q1_a2 = findViewById(R.id.q1_a2);
         q2_a1 = findViewById(R.id.q2_a1);
         q2_a2 = findViewById(R.id.q2_a2);
@@ -55,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
         q5_a1 = findViewById(R.id.q5_a1);
         q6_a3 = findViewById(R.id.q6_a3);
 
+        submitButton = findViewById(R.id.submit_button);
         submitButton.setOnClickListener(new ButtonClick());
+        playButton = findViewById(R.id.play_button);
         playButton.setOnClickListener(new ButtonClick());
         if (mPlayer == null) {
             mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.answer6);
@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         setupUI(findViewById(R.id.root_view));
     }
 
+    /**
+     * Set focus to the RootView
+     */
     private void requestFocus() {
         View parentView = (findViewById(R.id.root_view));
         parentView.requestFocus();
@@ -75,18 +78,17 @@ public class MainActivity extends AppCompatActivity {
         requestFocus();
     }
 
+    /**
+     * Save and Restore Answers after screen rotation
+     */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        // Save the user's current score state
-        savedInstanceState.putString(SUBMIT_TEXT, submitButton.getText().toString());
-        // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(SUBMIT_TEXT, submitButton.getText().toString());
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {
-        // Always call the superclass so it can restore the view hierarchy
         super.onRestoreInstanceState(savedInstanceState);
-        // Restore state members from saved instance
         submitButton.setText(savedInstanceState.getString(SUBMIT_TEXT));
         setPlayPauseImageResource();
         if (submitButton.getText().toString().equals("Play again")) {
@@ -98,9 +100,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Hide soft keyboard outside of the EditText
      */
-
     public void setupUI(View view) {
-
         // Set up touch listener for non-text box views to hide keyboard.
         if (!(view instanceof EditText)) {
             view.setOnTouchListener(new View.OnTouchListener() {
@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
         //If a layout container, iterate over children and seed recursion.
         if (view instanceof ViewGroup) {
             for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
@@ -131,8 +130,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Checks answers before submit
      */
-
     private boolean checkAnswers() {
+        nameField = findViewById(R.id.name_field);
+        q1 = findViewById(R.id.q1);
+        q4 = findViewById(R.id.q4);
+        q6 = findViewById(R.id.q6);
         String name = nameField.getText().toString();
 
         if (name.equals("")) {
@@ -159,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Display your result in a toast
      */
-
     private void displayResult() {
+        nameField = findViewById(R.id.name_field);
         String name = nameField.getText().toString();
         score = calculateScore();
         if (score == 12) {
@@ -177,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Score counter
      */
-
     private int calculateScore() {
         int score = 0;
         CompoundButton[] rightAnswers = {q1_a2, q2_a1, q2_a3, q2_a4, q3_a3, q3_a4, q4_a4, q6_a3};
@@ -200,7 +201,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void reset() {
-
+        q1 = findViewById(R.id.q1);
+        q4 = findViewById(R.id.q4);
+        q6 = findViewById(R.id.q6);
         score = 0;
         q1.clearCheck();
         q4.clearCheck();
@@ -221,7 +224,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Change the color of the right answers
      */
-
     private void changeColor() {
         changeTextInputFieldColors(R.color.green);
         q5_a1.setText(getString(R.string.answer5), TextView.BufferType.NORMAL);
@@ -235,6 +237,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAnswerButtonsDisabled(boolean enabled) {
+        nameField = findViewById(R.id.name_field);
+        q1 = findViewById(R.id.q1);
+        q4 = findViewById(R.id.q4);
+        q6 = findViewById(R.id.q6);
         CheckBox[] checkBoxes = {q2_a1, q2_a2, q2_a3, q2_a4, q3_a1, q3_a2, q3_a3, q3_a4,};
         RadioGroup[] radioGroups = {q1, q4, q6};
         for (int i = 0; i < checkBoxes.length; i++) {
