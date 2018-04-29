@@ -20,9 +20,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    MediaPlayer mPlayer;
-    private int score = 0;
+    private static final String SUBMIT_TEXT = "Submit";
+    private static MediaPlayer mPlayer;
+    private static int score = 0;
     private EditText nameField;
     private RadioGroup q1, q4, q6;
     private RadioButton q1_a2, q4_a4, q6_a3;
@@ -30,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText q5_a1;
     private Button submitButton;
     private ImageButton playButton;
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +62,29 @@ public class MainActivity extends AppCompatActivity {
 
         submitButton.setOnClickListener(new ButtonClick());
         playButton.setOnClickListener(new ButtonClick());
-        mPlayer = MediaPlayer.create(this, R.raw.answer6);
+        if (mPlayer == null) {
+            mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.answer6);
+        }
         setupUI(findViewById(R.id.parent_view));
     }
 
-    public void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current score state
+        savedInstanceState.putString(SUBMIT_TEXT, submitButton.getText().toString());
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore state members from saved instance
+        submitButton.setText(savedInstanceState.getString(SUBMIT_TEXT));
+        setPlayPauseImageResource();
+        if (submitButton.getText().toString().equals("Play again")) {
+            displayResult();
+        }
     }
 
     /**
@@ -125,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayResult() {
         String name = nameField.getText().toString();
-        calculateScore();
+        score = calculateScore();
         if (score == 12) {
             Toast.makeText(this, "You did it, " + name + "! You have " + score + " points out of 12.", Toast.LENGTH_LONG).show();
         } else if (score >= 6) {
@@ -141,7 +162,8 @@ public class MainActivity extends AppCompatActivity {
      * Score counter
      */
 
-    private void calculateScore() {
+    private int calculateScore() {
+        int score = 0;
         CompoundButton[] rightAnswers = {q1_a2, q2_a1, q2_a3, q2_a4, q3_a3, q3_a4, q4_a4, q6_a3};
         CompoundButton[] wrongAnswers = {q2_a2, q3_a1, q3_a2};
         for (int i = 0; i < rightAnswers.length; i++) {
@@ -158,28 +180,24 @@ public class MainActivity extends AppCompatActivity {
         if (q5Answer.length() > 0 && (Integer.parseInt(q5Answer) == 9)) {
             score++;
         }
+        return score;
     }
 
     private void reset() {
 
         score = 0;
-
         q1.clearCheck();
         q4.clearCheck();
         q6.clearCheck();
-
         q2_a1.setChecked(false);
         q2_a2.setChecked(false);
         q2_a3.setChecked(false);
         q2_a4.setChecked(false);
-
         q3_a1.setChecked(false);
         q3_a2.setChecked(false);
         q3_a3.setChecked(false);
         q3_a4.setChecked(false);
-
         q5_a1.setText("");
-
         changeTextInputFieldColors(R.color.black);
         setAnswerButtonsDisabled(true);
     }
@@ -230,10 +248,17 @@ public class MainActivity extends AppCompatActivity {
     public void playButtonClicked() {
         if (mPlayer.isPlaying()) {   // Checks music if it's playing
             mPlayer.pause();
-            playButton.setImageResource(R.drawable.ic_play);
         } else {
             mPlayer.start();
+        }
+        setPlayPauseImageResource();
+    }
+
+    public void setPlayPauseImageResource() {
+        if (mPlayer.isPlaying()) {   // Checks music if it's playing
             playButton.setImageResource(R.drawable.ic_pause);
+        } else {
+            playButton.setImageResource(R.drawable.ic_play);
         }
     }
 

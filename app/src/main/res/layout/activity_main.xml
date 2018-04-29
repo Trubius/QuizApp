@@ -24,7 +24,7 @@
             android:layout_marginBottom="@dimen/activity_margin"
             android:fontFamily="sans-serif"
             android:text="@string/music_quiz"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold" />
 
