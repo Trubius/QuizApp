@@ -31,11 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private Button submitButton;
     private ImageButton playButton;
 
-    public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +60,19 @@ public class MainActivity extends AppCompatActivity {
         if (mPlayer == null) {
             mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.answer6);
         }
+        initFocus();
         setupUI(findViewById(R.id.parent_view));
+    }
+
+    private void requestFocus() {
+        View parentView = (findViewById(R.id.parent_view));
+        parentView.requestFocus();
+    }
+
+    private void initFocus() {
+        View parentView = (findViewById(R.id.parent_view));
+        parentView.setFocusableInTouchMode(true);
+        requestFocus();
     }
 
     @Override
@@ -85,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         if (submitButton.getText().toString().equals("Play again")) {
             displayResult();
         }
+        requestFocus();
     }
 
     /**
@@ -109,6 +117,14 @@ public class MainActivity extends AppCompatActivity {
                 View innerView = ((ViewGroup) view).getChildAt(i);
                 setupUI(innerView);
             }
+        }
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        View view = activity.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 
